@@ -1,6 +1,6 @@
 = Beanstalk API Wrapper
 
-Official Ruby gem for accessing Beanstalk RESTful API. Basically a simple set of pre-written ActiveResource classes with a few adjustments.
+Official Ruby gem for accessing Beanstalk RESTful API. Basically a set of pre-written ActiveResource classes with a few adjustments.
 
 http://api.beanstalkapp.com
 
@@ -14,7 +14,9 @@ ActiveResource 2.3.5
 
 == Usage
 
-First enter your Beanstalk account details:
+First enable API access in your Beanstalk account by going to Account > Setup. Only the account owner can do that.
+
+Then in your code setup the API like that:
 
  Beanstalk::API::Base.setup(
    :domain   => 'your_beanstalk_subdomain',
@@ -25,6 +27,10 @@ First enter your Beanstalk account details:
 Then you can start using the API:
 
  Beanstalk::API::Account.find
+ 
+For information about all API methods please go to the official documentation site:
+
+http://api.beanstalkapp.com
 
 Copyright (c) 2010 Ilya Sabanin, Wildbit.
 Released under the MIT license

@@ -17,7 +17,19 @@ Gem::Specification.new do |s|
   s.files = [
     ".gitignore",
      "MIT-LICENSE",
-     "Rakefile"
+     "README.rdoc",
+     "Rakefile",
+     "VERSION",
+     "beanstalkapp.gemspec",
+     "lib/beanstalkapp.rb",
+     "lib/beanstalkapp/account.rb",
+     "lib/beanstalkapp/base.rb",
+     "lib/beanstalkapp/changeset.rb",
+     "lib/beanstalkapp/comment.rb",
+     "lib/beanstalkapp/release.rb",
+     "lib/beanstalkapp/release_server.rb",
+     "lib/beanstalkapp/repository.rb",
+     "lib/beanstalkapp/user.rb"
   ]
   s.homepage = %q{http://api.beanstalkapp.com}
   s.rdoc_options = ["--charset=UTF-8"]
