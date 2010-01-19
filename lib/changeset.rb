@@ -1,6 +1,14 @@
 module Beanstalk::API
   class Changeset < Base
     
+    def self.find_all_for_repository(repo_id)
+      get :repository, :repository_id => repo_id
+    end
+    
+    def self.find_for_repository(id, repo_id)
+      find id, :params => { :repository_id => repo_id }
+    end
+    
     # ActiveResource 2.3.2 doesn't support loading of nested arrays and symbols
     # we submitted a patch to the Rails Core but it's not committed yet
     # https://rails.lighthouseapp.com/projects/8994/tickets/2394-support-for-loading-nested-arrays-in-activeresource
