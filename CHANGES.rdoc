@@ -1,5 +1,9 @@
 = Changelog
 
+== 1.1.2
+
+* Fixed find methods in Release class.
+
 == 1.1.1
 
 * Bug fixing
