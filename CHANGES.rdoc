@@ -1,0 +1,16 @@
+= Changelog
+
+== 1.1.1
+
+* Bug fixing
+
+== 1.1
+
+* Added Comment model;
+* Added little helper methods to models, such as Release.find_all_for_repository;
+* Repackaged from Rails plugin to gem (Gemcutter);
+* Moved repository to Github.
+
+== 1.0
+
+* Initial public release
