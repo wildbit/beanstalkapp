@@ -10,5 +10,15 @@ module Beanstalk::API
       find name, :params => { :repository_id => repo_id }
     end
     
+    def to_param
+      name
+    end
+    
+    def toggle_state!
+      repo_id = prefix_options[:repository_id]
+      path = element_path(:repository_id => repo_id, :id => to_param).gsub(".xml", '/toggle_state.xml')
+      connection.put(path)
+    end
+        
   end
 end

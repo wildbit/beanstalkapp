@@ -1,5 +1,9 @@
 = Changelog
 
+== 1.1.3
+
+* Added ReleaseServer#toggle_state! method for enabling/disabling Releases servers.
+
 == 1.1.2
 
 * Fixed find methods in Release class.
