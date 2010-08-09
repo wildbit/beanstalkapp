@@ -3,21 +3,19 @@ module Beanstalk::API
     add_prefix ':repository_id'
     
     def self.find_all_for_repository(repo_id)
-      find :all, :params => { :repository_id => repo_id }
+      raise "This method was removed. To lookup ReleaseServers use ReleaseServer#find_all_for_environment method. Sorry."
     end
     
-    def self.find_for_repository(name, repo_id)
-      find name, :params => { :repository_id => repo_id }
+    def self.find_for_repository(id, repository_id)
+      find id, :params => { :repository_id => repository_id }
     end
-    
-    def to_param
-      name
+
+    def self.find_all_for_environment(environment_id, repository_id)
+      find :all, :params => { :repository_id => repository_id, :environment_id => environment_id }
     end
-    
+        
     def toggle_state!
-      repo_id = prefix_options[:repository_id]
-      path = element_path(:repository_id => repo_id, :id => to_param).gsub(".xml", '/toggle_state.xml')
-      connection.put(path)
+      raise "ReleaseServer#toggle_state! method was removed due to changes in how Beanstalk Deployments work. Sorry"
     end
         
   end

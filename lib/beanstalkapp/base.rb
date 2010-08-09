@@ -2,7 +2,8 @@ module Beanstalk
   module API
     class Base < ActiveResource::Base
       def self.setup(options)
-        self.site = "http://#{options[:domain]}.beanstalkapp.com/api"
+        options[:host] ||= "beanstalkapp.com"
+        self.site = "http://#{options[:domain]}.#{options[:host]}/api"
         self.user = options[:login]
         self.password = options[:password]
       end
