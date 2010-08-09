@@ -11,7 +11,7 @@ module Beanstalk
         str.gsub!(/^\//, '')
         class_eval(<<-CODE)
           def self.site
-            URI.parse(Beanstalk::API::Base.site.to_s + "/#{str}")
+            URI.parse(File.join(Beanstalk::API::Base.site.to_s, #{str.inspect}))
           end
         CODE
       end
