@@ -1,5 +1,9 @@
 = Changelog
 
+== 1.2.0
+
+* Added support for reworked Beanstalk Deployments. New model added: ServerEnvironment.
+
 == 1.1.3
 
 * Added ReleaseServer#toggle_state! method for enabling/disabling Releases servers.
