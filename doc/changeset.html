@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>Beanstalk &mdash; Hassle-free Subversion Hosting</title>
+  	<meta name="description" content="Beanstalk allows designers and developers to store source code, track changes, and collaborate with their team.">
+  	<meta name="author"      content="Wildbit, LLC">
+  	<meta name="viewport"    content="width=980">
+	  
+  	<!--[if IE]>
+  	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+
+  	<link rel="stylesheet" href="files/stylesheets/global.css" media="all">
+
+  	<!--[if IE 7]>
+  	<link rel="stylesheet" href="files/stylesheets/ie7.css" media="all">
+  	<![endif]-->
+
+  	<script type="text/javascript" src="files/javascripts/mootools-1.2.4-core-yc.js"></script>
+  	<script type="text/javascript" src="files/javascripts/code-highlighter.js"></script>
+  	<script type="text/javascript" src="files/javascripts/global.js"></script>
+
+  	<link rel="shortcut icon"    href="images/favicon.ico">
+  	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  </head>
+  
+  <body>
+    <header>
+    	<div class="container">
+
+    		<hgroup>
+    			<h1><a href="http://beanstalkapp.com">Beanstalk</a></h1>
+    			<h2><a href="http://beanstalkapp.com">Version Control with a Human Face</a></h2>
+    		</hgroup>
+  
+        <nav>
+    			<ul>
+    			  <li><a href="http://beanstalkapp.com">Home</a></li>
+    				<li><a href="http://beanstalkapp.com/features">Feature Tour</a></li>
+    				<li><a href="http://beanstalkapp.com/buzz">Buzz</a></li>
+    				<li><a href="http://help.beanstalkapp.com/">Support</a></li>
+    				<li><a href="http://beanstalkapp.com/partners">Partners</a></li>
+    				<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    				<li><strong>API &amp; Tools</strong></li>
+    				<li class="link-signin"><a href="https://login.beanstalkapp.com">Log In</a></li>
+    				<li class="link-signup"><a href="http://beanstalkapp.com/pricing">Pricing &amp; Sign Up</a></li>
+    			</ul>
+    		</nav>
+    		
+    		<b class="cl"></b><b class="cr"></b>
+    	</div>
+    </header>
+    
+    <div class="page" id="api">
+	    <div class="container">
+		    <section class="wrap">
+		      <h1>Changeset model</h1>
+<h3>Requirements</h3>
+<p>ActiveResource version 2.3 will not work with this model since it doesn’t support loading of nested arrays. We created a <a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/2394-support-for-loading-nested-arrays-in-activeresource">patch for ActiveResource</a> to fix this, but we are not sure when it will be approved and committed. For now you can use the <a href="rails_plugin.html">Ruby libraries</a> provided by Beanstalk which includes this patch.</p>
+<h3>Find all changesets</h3>
+<p>This will fetch 15 changesets from all repositories available to the user currently logged in by basic auth. Use the optional <var>page</var> parameter to fetch more changesets.</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/changesets.xml</pre></code></div>
+
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;revision-caches type=&quot;array&quot;&gt;
+  &lt;revision-cache&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;46245&lt;/account-id&gt;
+    &lt;repository-id type=&quot;integer&quot;&gt;14327&lt;/repository-id&gt;
+    &lt;revision type=&quot;integer&quot;&gt;1&lt;/revision&gt;
+    &lt;message&gt;Creating initial repository structure&lt;/message&gt;
+    &lt;author&gt;gilbert&lt;/author&gt;
+    &lt;changed-dirs type=&quot;yaml&quot;&gt;--- 
+    - - branches/
+      - :add
+    - - tags/
+      - :add
+    - - trunk/
+      - :add
+    &lt;/changed-dirs&gt;
+    &lt;changed-files type=&quot;yaml&quot;&gt;--- []&lt;/changed-files&gt;
+    &lt;changed-properties nil=&quot;true&quot;&gt;&lt;/changed-properties&gt;
+    &lt;too-large type=&quot;boolean&quot; nil=&quot;true&quot;&gt;&lt;/too-large&gt;
+    &lt;time type=&quot;datetime&quot;&gt;2009-11-18T12:49:34Z&lt;/time&gt;    
+  &lt;/revision-cache&gt;
+
+  &lt;revision-cache&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;46245&lt;/account-id&gt;
+    &lt;repository-id type=&quot;integer&quot;&gt;87654&lt;/repository-id&gt;
+    &lt;revision type=&quot;integer&quot;&gt;253&lt;/revision&gt;
+    &lt;message&gt;Added nothing&lt;/message&gt;
+    &lt;author&gt;evil-gilbert&lt;/author&gt;
+    &lt;user_id&gt;34087&lt;/user_id&gt;
+    &lt;changed-dirs type=&quot;yaml&quot;&gt;--- []&lt;/changed-dirs&gt;
+    &lt;changed-files type=&quot;yaml&quot;&gt;--- []&lt;/changed-files&gt;
+    &lt;changed-properties nil=&quot;true&quot;&gt;&lt;/changed-properties&gt;
+    &lt;too-large type=&quot;boolean&quot; nil=&quot;true&quot;&gt;&lt;/too-large&gt;
+    &lt;time type=&quot;datetime&quot;&gt;2009-11-18T13:23:32Z&lt;/time&gt;    
+  &lt;/revision-cache&gt;
+&lt;/revision-caches&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Changeset.find :all</pre></code></div>
+<h3>Find all changesets for a specific repository</h3>
+<p>You can use the repository name and it’s ID. So instead of <var>repo_name</var> in the example below, you could use a number like 58.</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/changesets/repository.xml?repository_id=NAME_OR_ID</pre></code></div>
+
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;revision-caches type=&quot;array&quot;&gt;
+  &lt;revision-cache&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;46245&lt;/account-id&gt;
+    &lt;repository-id type=&quot;integer&quot;&gt;1&lt;/repository-id&gt;
+    &lt;revision type=&quot;integer&quot;&gt;1&lt;/revision&gt;
+    &lt;message&gt;Creating initial repository structure&lt;/message&gt;
+    &lt;author&gt;gilbert&lt;/author&gt;
+    &lt;user_id&gt;34087&lt;/user_id&gt;
+    &lt;changed-dirs type=&quot;yaml&quot;&gt;--- 
+    - - branches/
+      - :add
+    - - tags/
+      - :add
+    - - trunk/
+      - :add
+    &lt;/changed-dirs&gt;
+    &lt;changed-files type=&quot;yaml&quot;&gt;--- []&lt;/changed-files&gt;
+    &lt;changed-properties nil=&quot;true&quot;&gt;&lt;/changed-properties&gt;
+    &lt;too-large type=&quot;boolean&quot; nil=&quot;true&quot;&gt;&lt;/too-large&gt;
+    &lt;time type=&quot;datetime&quot;&gt;2009-11-18T12:49:34Z&lt;/time&gt;    
+  &lt;/revision-cache&gt;
+
+  &lt;revision-cache&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;46245&lt;/account-id&gt;
+    &lt;repository-id type=&quot;integer&quot;&gt;1&lt;/repository-id&gt;
+    &lt;revision type=&quot;integer&quot;&gt;2&lt;/revision&gt;
+    &lt;message&gt;Dummy commit&lt;/message&gt;
+    &lt;author&gt;ilya&lt;/author&gt;
+    &lt;user_id&gt;97523&lt;/user_id&gt;
+    &lt;changed-dirs type=&quot;yaml&quot;&gt;--- []&lt;/changed-dirs&gt;
+    &lt;changed-files type=&quot;yaml&quot;&gt;--- []&lt;/changed-files&gt;
+    &lt;changed-properties nil=&quot;true&quot;&gt;&lt;/changed-properties&gt;
+    &lt;too-large type=&quot;boolean&quot; nil=&quot;true&quot;&gt;&lt;/too-large&gt;
+    &lt;time type=&quot;datetime&quot;&gt;2009-20-18T14:59:12Z&lt;/time&gt;    
+  &lt;/revision-cache&gt;
+&lt;/revision-caches&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Changeset.find_all_for_repository(58)</pre></code></div>
+<h3>Find a single changeset</h3>
+<p>Note that revision number is used instead of ID. Therefore you need to specify <var>repository_id</var>, which is the label (“repo_name”) in the example below. Alternatively for <var>repository_id</var> you could use it’s numeric ID (say “58”).</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/changesets/100.xml?repository_id=repo_name_or_id</pre></code></div>
+
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;revision-cache&gt;
+  &lt;account-id type=&quot;integer&quot;&gt;46245&lt;/account-id&gt;
+  &lt;repository-id type=&quot;integer&quot;&gt;1&lt;/repository-id&gt;
+  &lt;revision type=&quot;integer&quot;&gt;2&lt;/revision&gt;
+  &lt;message&gt;Dummy commit&lt;/message&gt;
+  &lt;author&gt;ilya&lt;/author&gt;
+  &lt;user_id&gt;97523&lt;/user_id&gt;
+  &lt;changed-dirs type=&quot;yaml&quot;&gt;--- []&lt;/changed-dirs&gt;
+  &lt;changed-files type=&quot;yaml&quot;&gt;--- []&lt;/changed-files&gt;
+  &lt;changed-properties nil=&quot;true&quot;&gt;&lt;/changed-properties&gt;
+  &lt;too-large type=&quot;boolean&quot; nil=&quot;true&quot;&gt;&lt;/too-large&gt;
+  &lt;time type=&quot;datetime&quot;&gt;2009-20-18T14:59:12Z&lt;/time&gt;    
+&lt;/revision-cache&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Changeset.find_for_repository(100, &quot;repo&quot;)</pre></code></div>
+	      </section>
+	      
+	      <section id="sidebar">
+	        <ul class="tabs">
+				    <li>
+				      
+				      <a href="introduction.html">Introduction</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="changelog.html">Changelog</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="ruby_gem.html">Ruby Gem</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="account.html">Account</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="user.html">User</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="repository.html">Repository</a>
+      	    </li>
+      	    <li>
+      	      
+              <strong>&rarr; Changeset</strong>
+      	    </li>          	    
+      	    <li>
+      	      
+              <a href="comment.html">Comment</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="server_environment.html">Server Environment</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <a href="release_server.html">Release Server</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <a href="release.html">Release</a>
+      	    </li>
+			    </ul>
+        </section>
+	    </div>
+	  </div>
+	  
+	  <footer>
+
+    	<div class="container">
+    		<ul>
+    		  <li><a href="http://help.beanstalkapp.com/discussion/new">Contact</a></li>
+    			<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    			<li><a href="http://twitter.com/beanstalkapp">Twitter</a></li>
+    			<li><a href="http://beanstalkapp.com/security">Security</a></li>
+    			<li><a href="http://beanstalkapp.com/privacy-policy">Privacy Policy</a></li>
+    			<li><a href="http://beanstalkapp.com/terms-of-service">Terms of Service</a></li>
+    		</ul>
+    		<p>&copy; <a href="http://wildbit.com/">Wildbit, <abbr>LLC</abbr></a>, 2010. All rights reserved. The Beanstalk logo and name are trademarks of Wildbit, <abbr>LLC</abbr>.</p>
+    	</div>
+
+    </footer>
+    
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-507677-5");
+pageTracker._setDomainName(".beanstalkapp.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+  </body>
+</html>

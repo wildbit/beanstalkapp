@@ -1,0 +1,85 @@
+/* IE 7 Only
+------------------------------ */
+
+/* hasLayout */
+
+header .container,
+nav ul,
+#features,
+#customers,
+#integrations,
+.plan-free {
+	zoom: 1;
+}
+
+
+/* Cursor */
+
+a.button {
+	cursor: pointer;
+}
+
+
+/* Layout */
+
+#features,
+#testimonial {
+	margin-top: 40px;
+}
+footer .container {
+	padding: 10px 0;
+}
+
+
+/* Vertical align */
+
+#testimonial {
+	position: relative;
+}
+	#testimonial blockquote {
+		display: block;
+		position: absolute;
+		top: 50%;
+		height: auto;
+	}
+		#testimonial blockquote p {
+			display: block;
+			position: relative;
+			top: -52.5%;
+		}
+	#testimonial blockquote ~ p {
+		margin-top: -.8em;
+	}
+
+#customers {
+	position: relative;
+}
+	#customers ul {
+		margin-right: -180px;
+	}
+	#customers ul li {
+		position: relative;
+		display: block;
+	}
+		#customers ul li a {
+			display: block;
+			position: absolute;
+			top: 50%; left: 0;
+		}
+		#customers ul li a img {
+			display: block;
+			position: relative;
+			top: -50%;
+		}
+
+	#customers.alternative ul {
+		margin-right: -340px;
+	}
+
+
+/* Lines */
+
+.plan-free p,
+#integrations p {
+	display: inline;
+}

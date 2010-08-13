@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>Beanstalk &mdash; Hassle-free Subversion Hosting</title>
+  	<meta name="description" content="Beanstalk allows designers and developers to store source code, track changes, and collaborate with their team.">
+  	<meta name="author"      content="Wildbit, LLC">
+  	<meta name="viewport"    content="width=980">
+	  
+  	<!--[if IE]>
+  	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+
+  	<link rel="stylesheet" href="files/stylesheets/global.css" media="all">
+
+  	<!--[if IE 7]>
+  	<link rel="stylesheet" href="files/stylesheets/ie7.css" media="all">
+  	<![endif]-->
+
+  	<script type="text/javascript" src="files/javascripts/mootools-1.2.4-core-yc.js"></script>
+  	<script type="text/javascript" src="files/javascripts/code-highlighter.js"></script>
+  	<script type="text/javascript" src="files/javascripts/global.js"></script>
+
+  	<link rel="shortcut icon"    href="images/favicon.ico">
+  	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  </head>
+  
+  <body>
+    <header>
+    	<div class="container">
+
+    		<hgroup>
+    			<h1><a href="http://beanstalkapp.com">Beanstalk</a></h1>
+    			<h2><a href="http://beanstalkapp.com">Version Control with a Human Face</a></h2>
+    		</hgroup>
+  
+        <nav>
+    			<ul>
+    			  <li><a href="http://beanstalkapp.com">Home</a></li>
+    				<li><a href="http://beanstalkapp.com/features">Feature Tour</a></li>
+    				<li><a href="http://beanstalkapp.com/buzz">Buzz</a></li>
+    				<li><a href="http://help.beanstalkapp.com/">Support</a></li>
+    				<li><a href="http://beanstalkapp.com/partners">Partners</a></li>
+    				<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    				<li><strong>API &amp; Tools</strong></li>
+    				<li class="link-signin"><a href="https://login.beanstalkapp.com">Log In</a></li>
+    				<li class="link-signup"><a href="http://beanstalkapp.com/pricing">Pricing &amp; Sign Up</a></li>
+    			</ul>
+    		</nav>
+    		
+    		<b class="cl"></b><b class="cr"></b>
+    	</div>
+    </header>
+    
+    <div class="page" id="api">
+	    <div class="container">
+		    <section class="wrap">
+		      <h1>Introduction</h1>
+<p>The <span class="caps">API</span> can be used to build tools or services around Beanstalk account information. You can enable <span class="caps">API</span> access in your account settings. You need to be an account owner to do so.</p>
+<p>Beanstalk uses <span class="caps">REST</span> methodology for its <span class="caps">API</span>. Our <span class="caps">API</span> format is <span class="caps">XML</span>.</p>
+<p>Every <span class="caps">API</span> method requires basic <span class="caps">HTTP</span> authentication. You can use the login/password of any user under your account.</p>
+<p>Also, if you perform <span class="caps">API</span> requests without using our wrapper, you must send Content-Type header set to &#8220;application/xml&#8221; with every request.</p>
+<h2>Ruby Wrapper</h2>
+<p>Beanstalk provides a Ruby gem (wrapper for <tt>ActiveResource</tt>) that will make your work with the <span class="caps">API</span> easier. Please let us know if you write a library in any other languages so we can post it for others. For more information about the wrapper go to the <a href="ruby_gem.html">Ruby Gem</a> page.</p>
+<p>We&#8217;re looking for help with other language libraries. Please <a href="mailto:support@beanstalkapp.com">email us</a> if you are interested.</p>
+<h2>About the format of our docs</h2>
+<p>Each Beanstalk model (a piece that represents some kind of data) has its own page on this site. That page contains all the information you need in order to start working with the model, including descriptions of each <span class="caps">API</span> method available for the model. For each <span class="caps">API</span> method we include two blocks of code as working examples. The first block of code illustrates how to utilize the method using the raw <span class="caps">HTTP</span> requests; the second block shows how to use it with the Ruby library provided by Beanstalk.</p>
+<p>When you see code like this:</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/users.xml</pre></code></div>
+<p>It means sending a <span class="caps">GET</span> <span class="caps">HTTP</span> request to a url <tt>http://accountname.beanstalkapp.com/api/users.xml</tt>.</p>
+	      </section>
+	      
+	      <section id="sidebar">
+	        <ul class="tabs">
+				    <li>
+				      
+				      <strong>&rarr; Introduction</strong>
+      	    </li>
+      	    <li>
+      	      
+              <a href="changelog.html">Changelog</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="ruby_gem.html">Ruby Gem</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="account.html">Account</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="user.html">User</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="repository.html">Repository</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="changeset.html">Changeset</a>
+      	    </li>          	    
+      	    <li>
+      	      
+              <a href="comment.html">Comment</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="server_environment.html">Server Environment</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <a href="release_server.html">Release Server</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <a href="release.html">Release</a>
+      	    </li>
+			    </ul>
+        </section>
+	    </div>
+	  </div>
+	  
+	  <footer>
+
+    	<div class="container">
+    		<ul>
+    		  <li><a href="http://help.beanstalkapp.com/discussion/new">Contact</a></li>
+    			<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    			<li><a href="http://twitter.com/beanstalkapp">Twitter</a></li>
+    			<li><a href="http://beanstalkapp.com/security">Security</a></li>
+    			<li><a href="http://beanstalkapp.com/privacy-policy">Privacy Policy</a></li>
+    			<li><a href="http://beanstalkapp.com/terms-of-service">Terms of Service</a></li>
+    		</ul>
+    		<p>&copy; <a href="http://wildbit.com/">Wildbit, <abbr>LLC</abbr></a>, 2010. All rights reserved. The Beanstalk logo and name are trademarks of Wildbit, <abbr>LLC</abbr>.</p>
+    	</div>
+
+    </footer>
+    
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-507677-5");
+pageTracker._setDomainName(".beanstalkapp.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+  </body>
+</html>

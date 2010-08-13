@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>Beanstalk &mdash; Hassle-free Subversion Hosting</title>
+  	<meta name="description" content="Beanstalk allows designers and developers to store source code, track changes, and collaborate with their team.">
+  	<meta name="author"      content="Wildbit, LLC">
+  	<meta name="viewport"    content="width=980">
+	  
+  	<!--[if IE]>
+  	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+
+  	<link rel="stylesheet" href="files/stylesheets/global.css" media="all">
+
+  	<!--[if IE 7]>
+  	<link rel="stylesheet" href="files/stylesheets/ie7.css" media="all">
+  	<![endif]-->
+
+  	<script type="text/javascript" src="files/javascripts/mootools-1.2.4-core-yc.js"></script>
+  	<script type="text/javascript" src="files/javascripts/code-highlighter.js"></script>
+  	<script type="text/javascript" src="files/javascripts/global.js"></script>
+
+  	<link rel="shortcut icon"    href="images/favicon.ico">
+  	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  </head>
+  
+  <body>
+    <header>
+    	<div class="container">
+
+    		<hgroup>
+    			<h1><a href="http://beanstalkapp.com">Beanstalk</a></h1>
+    			<h2><a href="http://beanstalkapp.com">Version Control with a Human Face</a></h2>
+    		</hgroup>
+  
+        <nav>
+    			<ul>
+    			  <li><a href="http://beanstalkapp.com">Home</a></li>
+    				<li><a href="http://beanstalkapp.com/features">Feature Tour</a></li>
+    				<li><a href="http://beanstalkapp.com/buzz">Buzz</a></li>
+    				<li><a href="http://help.beanstalkapp.com/">Support</a></li>
+    				<li><a href="http://beanstalkapp.com/partners">Partners</a></li>
+    				<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    				<li><strong>API &amp; Tools</strong></li>
+    				<li class="link-signin"><a href="https://login.beanstalkapp.com">Log In</a></li>
+    				<li class="link-signup"><a href="http://beanstalkapp.com/pricing">Pricing &amp; Sign Up</a></li>
+    			</ul>
+    		</nav>
+    		
+    		<b class="cl"></b><b class="cr"></b>
+    	</div>
+    </header>
+    
+    <div class="page" id="api">
+	    <div class="container">
+		    <section class="wrap">
+		      <h1>Repository Model</h1>
+<h3>Writable attributes</h3>
+<ol>
+	<li><var>name</var> — required only on create, must be unique;</li>
+	<li><var>type_id</var> &#8211; <span class="caps">VCS</span> type: subversion or git. If not present it will default to subversion;</li>
+	<li><var>title</var> — required, must be unique;</li>
+	<li><var>create_structure</var> — only on create <sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup></li>
+	<li><var>color_label</var> <sup class="footnote" id="fnr2"><a href="#fn2">2</a></sup></li>
+</ol>
+<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> Works only for Subversion repositories. That boolean flag determines if you want to create &#8220;trunk&#8221;, &#8220;branches&#8221; and &#8220;tags&#8221; directories in your new repository or not. If <var>true</var>, Beanstalk will create those directories as rev. 1 of your repository.</p>
+<p class="footnote" id="fn2"><a href="#fnr2"><sup>2</sup></a> see the list of available color labels at the end of the page.</p>
+<h3>Find all repositories</h3>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/repositories.xml</pre></code></div>
+
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;repositories type=&quot;array&quot;&gt;
+  &lt;repository&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;9247&lt;/account-id&gt;
+    &lt;anonymous type=&quot;boolean&quot;&gt;false&lt;/anonymous&gt;
+    &lt;color-label&gt;label-blue&lt;/color-label&gt;
+    &lt;created-at type=&quot;datetime&quot;&gt;
+      2007-06-14T22:15:37Z
+    &lt;/created-at&gt;
+    &lt;id type=&quot;integer&quot;&gt;82346&lt;/id&gt;
+    &lt;type&gt;SubversionRepository&lt;/id&gt;
+    &lt;last-commit-at type=&quot;datetime&quot;&gt;
+      2009-11-18T13:21:24Z
+    &lt;/last-commit-at&gt;
+    &lt;name&gt;ProjectAlpha&lt;/name&gt;
+    &lt;revision type=&quot;integer&quot;&gt;36&lt;/revision&gt;
+    &lt;storage-used-bytes type=&quot;integer&quot;&gt;
+      151130112
+    &lt;/storage-used-bytes&gt;
+    &lt;title&gt;Beanstalk&lt;/title&gt;
+    &lt;updated-at type=&quot;datetime&quot;&gt;
+      2009-11-18T13:21:42Z
+    &lt;/updated-at&gt;
+  &lt;/repository&gt;
+  
+  &lt;repository&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;7334&lt;/account-id&gt;
+    &lt;anonymous type=&quot;boolean&quot;&gt;false&lt;/anonymous&gt;
+    &lt;color-label&gt;label-&lt;/color-label&gt;
+    &lt;created-at type=&quot;datetime&quot;&gt;
+      2007-07-23T06:59:15Z
+    &lt;/created-at&gt;
+    &lt;id type=&quot;integer&quot;&gt;63722&lt;/id&gt;
+    &lt;type&gt;SubversionRepository&lt;/id&gt;
+    &lt;last-commit-at type=&quot;datetime&quot;&gt;
+      2007-07-23T08:11:13Z
+    &lt;/last-commit-at&gt;
+    &lt;name&gt;mt&lt;/name&gt;
+    &lt;revision type=&quot;integer&quot;&gt;2&lt;/revision&gt;
+    &lt;storage-used-bytes type=&quot;integer&quot;&gt;
+      180224
+    &lt;/storage-used-bytes&gt;
+    &lt;title&gt;Super Repository&lt;/title&gt;
+    &lt;updated-at type=&quot;datetime&quot;&gt;
+      2009-08-10T06:05:39Z
+    &lt;/updated-at&gt;
+  &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Repository.find(:all)</pre></code></div>
+<h3>Find a single repository by ID</h3>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/repositories/58.xml</pre></code></div>
+
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;repository&gt;
+  &lt;account-id type=&quot;integer&quot;&gt;9247&lt;/account-id&gt;
+  &lt;anonymous type=&quot;boolean&quot;&gt;false&lt;/anonymous&gt;
+  &lt;color-label&gt;label-blue&lt;/color-label&gt;
+  &lt;created-at type=&quot;datetime&quot;&gt;
+    2007-06-14T22:15:37Z
+  &lt;/created-at&gt;
+  &lt;id type=&quot;integer&quot;&gt;82346&lt;/id&gt;
+  &lt;type&gt;SubversionRepository&lt;/id&gt;
+  &lt;last-commit-at type=&quot;datetime&quot;&gt;
+    2009-11-18T13:21:24Z
+  &lt;/last-commit-at&gt;
+  &lt;name&gt;ProjectAlpha&lt;/name&gt;
+  &lt;revision type=&quot;integer&quot;&gt;36&lt;/revision&gt;
+  &lt;storage-used-bytes type=&quot;integer&quot;&gt;
+    151130112
+  &lt;/storage-used-bytes&gt;
+  &lt;title&gt;Beanstalk&lt;/title&gt;
+  &lt;updated-at type=&quot;datetime&quot;&gt;
+    2009-11-18T13:21:42Z
+  &lt;/updated-at&gt;
+&lt;/repository&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Repository.find(58)</pre></code></div>
+<h3>Create new repository</h3>
+<p>See a list of writable attributes at the top of the page.</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>POST /api/repositories.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;repository&gt;
+  &lt;name&gt;shiny_new_repo&lt;/name&gt;
+  &lt;title&gt;Bubblegum&lt;/title&gt;
+&lt;/repository&gt;
+</pre></code></div>
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;repository&gt;
+  &lt;account-id type=&quot;integer&quot;&gt;9247&lt;/account-id&gt;
+  &lt;anonymous type=&quot;boolean&quot;&gt;false&lt;/anonymous&gt;
+  &lt;color-label&gt;label-blue&lt;/color-label&gt;
+  &lt;created-at type=&quot;datetime&quot;&gt;
+    2007-06-14T22:15:37Z
+  &lt;/created-at&gt;
+  &lt;id type=&quot;integer&quot;&gt;82346&lt;/id&gt;
+  &lt;type&gt;SubversionRepository&lt;/id&gt;
+  &lt;last-commit-at type=&quot;datetime&quot;&gt;
+    2009-11-18T13:21:24Z
+  &lt;/last-commit-at&gt;
+  &lt;name&gt;ProjectAlpha&lt;/name&gt;
+  &lt;revision type=&quot;integer&quot;&gt;36&lt;/revision&gt;
+  &lt;storage-used-bytes type=&quot;integer&quot;&gt;
+    151130112
+  &lt;/storage-used-bytes&gt;
+  &lt;title&gt;Beanstalk&lt;/title&gt;
+  &lt;updated-at type=&quot;datetime&quot;&gt;
+    2009-11-18T13:21:42Z
+  &lt;/updated-at&gt;
+&lt;/repository&gt;
+
+--OR IF INVALID--
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;errors&gt;
+  &lt;error&gt;Name can't be blank&lt;/error&gt;
+&lt;/errors&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Repository.create(
+  :name =&gt; &quot;repo_name&quot;,
+  :title =&gt; &quot;Repo Name&quot;
+)
+</pre></code></div>
+<h3>Update existing repository</h3>
+<p>See a list of writable attributes at the top of the page. You only need to pass the attributes that you want to change.</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>PUT /api/repositories/58.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;repository&gt;
+  &lt;name&gt;bahroma_tunec&lt;/name&gt;
+  &lt;title&gt;bla&lt;/title&gt;
+  &lt;color_label&gt;label-red&lt;/color_label&gt;
+&lt;/repository&gt;
+</pre></code></div>
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>HEAD 200 OK
+  
+--OR IF INVALID--
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;errors&gt;
+  &lt;error&gt;Name can't be blank&lt;/error&gt;
+&lt;/errors&gt;</code></pre>
+            </div>
+          <p>Or using the ruby lib:</p>
+<div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>repo = Beanstalk::API::Repository.find(58)
+repo.title = &quot;New Neat Title&quot;
+repo.save
+</pre></code></div>
+<h3>Color labels</h3>
+<ol>
+	<li><var>label-red</var></li>
+	<li><var>label-orange</var></li>
+	<li><var>label-yellow</var></li>
+	<li><var>label-green</var></li>
+	<li><var>label-blue</var></li>
+	<li><var>label-pink</var></li>
+	<li><var>label-grey</var></li>
+</ol>
+<h3>To be implemented</h3>
+<ol>
+	<li>Import repository from dump / working copy / etc.</li>
+</ol>
+	      </section>
+	      
+	      <section id="sidebar">
+	        <ul class="tabs">
+				    <li>
+				      
+				      <a href="introduction.html">Introduction</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="changelog.html">Changelog</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="ruby_gem.html">Ruby Gem</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="account.html">Account</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="user.html">User</a>
+      	    </li>
+      	    <li>
+      	      
+              <strong>&rarr; Repository</strong>
+      	    </li>
+      	    <li>
+      	      
+              <a href="changeset.html">Changeset</a>
+      	    </li>          	    
+      	    <li>
+      	      
+              <a href="comment.html">Comment</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="server_environment.html">Server Environment</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <a href="release_server.html">Release Server</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <a href="release.html">Release</a>
+      	    </li>
+			    </ul>
+        </section>
+	    </div>
+	  </div>
+	  
+	  <footer>
+
+    	<div class="container">
+    		<ul>
+    		  <li><a href="http://help.beanstalkapp.com/discussion/new">Contact</a></li>
+    			<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    			<li><a href="http://twitter.com/beanstalkapp">Twitter</a></li>
+    			<li><a href="http://beanstalkapp.com/security">Security</a></li>
+    			<li><a href="http://beanstalkapp.com/privacy-policy">Privacy Policy</a></li>
+    			<li><a href="http://beanstalkapp.com/terms-of-service">Terms of Service</a></li>
+    		</ul>
+    		<p>&copy; <a href="http://wildbit.com/">Wildbit, <abbr>LLC</abbr></a>, 2010. All rights reserved. The Beanstalk logo and name are trademarks of Wildbit, <abbr>LLC</abbr>.</p>
+    	</div>
+
+    </footer>
+    
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-507677-5");
+pageTracker._setDomainName(".beanstalkapp.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+  </body>
+</html>
