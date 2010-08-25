@@ -79,11 +79,18 @@ test "Update ServerEnvironment" do
   env
 end
 
-test "Create new Release" do
+test "Create new Release (fail)" do
   r = Beanstalk::API::Release.new
   r.prefix_options = { :repository_id => $repository_id, :environment_id => $environment_id }
-  r.release_server_id = $release_server_id
   r.revision = ""
+  r.save
+  r
+end
+
+test "Create new Release (success)" do
+  r = Beanstalk::API::Release.new
+  r.prefix_options = { :repository_id => $repository_id, :environment_id => $environment_id }
+  r.revision = "a7bda21cb723c50298be0366b0b1bb08bcedaff2"
   r.save
   r
 end
