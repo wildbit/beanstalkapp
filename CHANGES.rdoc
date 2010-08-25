@@ -1,5 +1,8 @@
 = Changelog
 
+== 1.2.1
+* Added pagination support for Releases API. Now you can specify page number as a third argument to Release.find_all_for_environment.
+
 == 1.2.0
 
 * Added support for reworked Beanstalk Deployments. New model added: ServerEnvironment.
