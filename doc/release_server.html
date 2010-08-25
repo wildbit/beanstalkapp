@@ -71,6 +71,8 @@
 	<li><var>use_active_mode</var> — &#8220;true&#8221; or &#8220;false&#8221;;</li>
 	<li><var>authenticate_by_key</var> — &#8220;true&#8221; or &#8220;false&#8221;. For <span class="caps">SFTP</span> servers only, will try to authenticate using <a href="http://anything.beanstalkapp.com/beanstalk_rsa.pub">Beanstalk&#8217;s public key</a>;</li>
 	<li><var>use_feat</var> — &#8220;true&#8221; or &#8220;false&#8221;;</li>
+	<li><var>pre_release_hook</var> — &#8220;http://yourhost.com/yourhook.php&#8221;. <span class="caps">URL</span> that we will <span class="caps">POST</span> information about current release to before starting deployment;</li>
+	<li><var>post_release_hook</var> — &#8220;http://yourhost.com/yourhook.php&#8221;. <span class="caps">URL</span> that we will <span class="caps">POST</span> information about current release to before after deployment was successful;</li>
 </ol>
 <h3>Description</h3>
 <p>ReleaseServer is a model that contains connection settings used by Releases for deployments. Amount of Release Servers that you
@@ -133,7 +135,7 @@ can create is limited by your account&#8217;s plan.</p>
           <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::ReleaseServer.find_all_for_environment(7, &quot;repo&quot;)</pre></code></div>
 <h3>Find a single Release Server</h3>
 <p>To find a server use it’s ID. <var>repository_id</var> is required as well. It’s the number 58 in the example below.</p>
-<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/58/release_servers/development.xml</pre></code></div>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/58/release_servers/864.xml</pre></code></div>
 
             <div class="code_container response">
               <p>Click to expand&hellip;</p>
@@ -229,7 +231,7 @@ server.save
 </pre></code></div>
 <h3>Update existing Release Server</h3>
 <p>See the list of writable attributes at the top of the page. You only need to pass the attributes that you want to change.</p>
-<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>PUT /api/58/release_servers/development.xml
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>PUT /api/58/release_servers/864.xml
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;release_server&gt;
   &lt;port&gt;22&lt;/state&gt;
