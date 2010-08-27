@@ -78,8 +78,8 @@
 <p>ReleaseServer is a model that contains connection settings used by Releases for deployments. Amount of Release Servers that you
 can create is limited by your account&#8217;s plan.</p>
 <h3>Find all Release Servers</h3>
-<p>You need to specify the repository ID. It’s the number 58 in the example below.</p>
-<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/58/release_servers.xml</pre></code></div>
+<p>You need to specify the repository ID (it’s the number 58 in the example below) and environment ID (number 6 below).</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/58/release_servers.xml?environment_id=6</pre></code></div>
 
             <div class="code_container response">
               <p>Click to expand&hellip;</p>
@@ -105,7 +105,6 @@ can create is limited by your account&#8217;s plan.</p>
     &lt;environment-name&gt;Staging&lt;/environment-name&gt;
     &lt;server-environment-id&gt;6&lt;/server-environment-id&gt;
     &lt;revision type=&quot;integer&quot;&gt;31&lt;/revision&gt;
-    &lt;state&gt;enabled&lt;/state&gt;
     &lt;updated-at type=&quot;datetime&quot;&gt;
       2008-10-29T17:17:52Z
     &lt;/updated-at&gt;
@@ -125,6 +124,8 @@ can create is limited by your account&#8217;s plan.</p>
     &lt;remote-addr&gt;ftp.example.com&lt;/remote-addr&gt;
     &lt;remote-path&gt;/&lt;/remote-path&gt;
     &lt;repository-id type=&quot;integer&quot;&gt;73451&lt;/repository-id&gt;
+    &lt;environment-name&gt;Staging&lt;/environment-name&gt;
+    &lt;server-environment-id&gt;6&lt;/server-environment-id&gt;
     &lt;revision type=&quot;integer&quot;&gt;0&lt;/revision&gt;
     &lt;updated-at type=&quot;datetime&quot;&gt;
       2008-10-29T17:17:52Z
@@ -169,7 +170,7 @@ can create is limited by your account&#8217;s plan.</p>
 )</pre></code></div>
 <h3>Create a Release Server</h3>
 <p>See the list of writable attributes at the top of the page. All attributes are required for creation.</p>
-<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>POST /api/58/release_servers.xml
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>POST /api/58/release_servers.xml?environment_id=6
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;release_server&gt;  
   &lt;name&gt;development&lt;/name&gt;
@@ -234,7 +235,7 @@ server.save
 <div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>PUT /api/58/release_servers/864.xml
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;release_server&gt;
-  &lt;port&gt;22&lt;/state&gt;
+  &lt;port&gt;22&lt;/port&gt;
 &lt;/release_server&gt;
 </pre></code></div>
             <div class="code_container response">

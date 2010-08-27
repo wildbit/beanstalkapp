@@ -120,7 +120,7 @@
   &lt;/release&gt;
 &lt;/releases&gt;</code></pre>
             </div>
-          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Release.find_all_for_environment(environment_id=7, &quot;repo&quot;)</pre></code></div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Release.find_all_for_environment(environment_id=7, &quot;repo&quot;, page=nil)</pre></code></div>
 <h3>Find a single release</h3>
 <p><var>repository_id</var> is required. Either name of the repo or it’s ID can be used. Release ID is required.</p>
 <div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/repo_name/8765.xml</pre></code></div>
@@ -155,9 +155,8 @@
 <h3>Create new release</h3>
 <p>Creating a release means requesting a deployment. If you already have some releases in state “new” or “retry”, Beanstalk will delete them after creating a new one.</p>
 <p>See the list of writable attributes at the top of the page. Both <var>revision</var> and <var>release_server_id</var> are required. <var>release_server_id</var> should be an ID of an enabled server under your account.</p>
-<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>POST /api/repo_name/releases.xml
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>POST /api/repo_name/releases.xml/?environment_id=6
 &lt;release&gt;
-  &lt;release-server-id type=&quot;integer&quot;&gt;1&lt;/release-server-id&gt;
   &lt;revision type=&quot;integer&quot;&gt;1&lt;/revision&gt;
 &lt;/release&gt;
 </pre></code></div>
@@ -197,7 +196,6 @@
             </div>
           <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>r = Beanstalk::API::Release.new
 r.prefix_options = { :repository_id =&gt; 58, :environment_id =&gt; 6 }
-r.release_server_id = 1
 r.revision = 1
 r.save
 </pre></code></div>
