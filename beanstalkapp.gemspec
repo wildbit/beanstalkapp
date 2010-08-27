@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{beanstalkapp}
-  s.version = "1.1.2"
+  s.version = "1.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ilya Sabanin"]
-  s.date = %q{2010-01-20}
+  s.date = %q{2010-08-27}
   s.email = %q{ilya.sabanin@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -22,6 +22,110 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "beanstalkapp.gemspec",
+     "doc/account.html",
+     "doc/changelog.html",
+     "doc/changeset.html",
+     "doc/comment.html",
+     "doc/files/javascripts/code-highlighter.js",
+     "doc/files/javascripts/global.js",
+     "doc/files/javascripts/mootools-1.2.4-core-yc.js",
+     "doc/files/stylesheets/global.css",
+     "doc/files/stylesheets/ie7.css",
+     "doc/images/apple-touch-icon.png",
+     "doc/images/b-search.gif",
+     "doc/images/b-submit.gif",
+     "doc/images/b-tour.png",
+     "doc/images/bg-comments-count.png",
+     "doc/images/bg-corners.png",
+     "doc/images/bg-header-pattern-alt.png",
+     "doc/images/bg-header-pattern.png",
+     "doc/images/bg-header.png",
+     "doc/images/bg-input.png",
+     "doc/images/bg-page-pattern-alt.png",
+     "doc/images/bg-page-pattern.png",
+     "doc/images/bg-plans.png",
+     "doc/images/bg-ref-basecamp.gif",
+     "doc/images/bg-ref-lighthouse.gif",
+     "doc/images/bg-ref-rackspace.gif",
+     "doc/images/bg-ref-versions.gif",
+     "doc/images/bg-referrer.png",
+     "doc/images/bg-screenshot.png",
+     "doc/images/bg-tooltip.png",
+     "doc/images/button.png",
+     "doc/images/customers/blueflavor.png",
+     "doc/images/customers/brightcove.png",
+     "doc/images/customers/flipshake-s.png",
+     "doc/images/customers/flipshake.png",
+     "doc/images/customers/helloenjoy-s.png",
+     "doc/images/customers/helloenjoy.png",
+     "doc/images/customers/netmagazine.jpg",
+     "doc/images/customers/newrelic.png",
+     "doc/images/customers/puma.png",
+     "doc/images/customers/realmac-s.png",
+     "doc/images/customers/realmac.png",
+     "doc/images/customers/scrapblog.png",
+     "doc/images/customers/store74.gif",
+     "doc/images/customers/theappleblog.jpg",
+     "doc/images/customers/tuaw.jpg",
+     "doc/images/customers/vzaar-s.png",
+     "doc/images/customers/vzaar.png",
+     "doc/images/customers/wufoo-s.png",
+     "doc/images/customers/wufoo.png",
+     "doc/images/favicon.ico",
+     "doc/images/i-arrow.png",
+     "doc/images/i-cc.png",
+     "doc/images/i-checkmark.png",
+     "doc/images/i-features.png",
+     "doc/images/i-help.png",
+     "doc/images/i-input-email.png",
+     "doc/images/i-input-password.png",
+     "doc/images/i-leaf.png",
+     "doc/images/i-lock-sml.png",
+     "doc/images/i-rss.png",
+     "doc/images/i-tour-help.png",
+     "doc/images/logo-rackspace.gif",
+     "doc/images/logo-sml.png",
+     "doc/images/logo-wildbit.png",
+     "doc/images/logo.png",
+     "doc/images/logos/basecamp-ref.png",
+     "doc/images/logos/basecamp.png",
+     "doc/images/logos/campfire.png",
+     "doc/images/logos/cloudscaling.png",
+     "doc/images/logos/collabnet.gif",
+     "doc/images/logos/dynect.png",
+     "doc/images/logos/fogbugz.png",
+     "doc/images/logos/freckle.png",
+     "doc/images/logos/harvest-ref.gif",
+     "doc/images/logos/harvest.png",
+     "doc/images/logos/lighthouse-ref.png",
+     "doc/images/logos/lighthouse.png",
+     "doc/images/logos/pixelnovel.png",
+     "doc/images/logos/rackspace-ref.gif",
+     "doc/images/logos/rackspace.gif",
+     "doc/images/logos/rackspace.png",
+     "doc/images/logos/splunk-s.png",
+     "doc/images/logos/splunk.png",
+     "doc/images/logos/teamsupport.png",
+     "doc/images/logos/twitter.png",
+     "doc/images/logos/versions-ref.gif",
+     "doc/images/logos/versions.png",
+     "doc/images/promo-screenshots.png",
+     "doc/images/sep-promo.png",
+     "doc/images/ss-browse.png",
+     "doc/images/ss-changeset.png",
+     "doc/images/ss-dashboard.png",
+     "doc/images/ss-integrations.png",
+     "doc/images/ss-releases.png",
+     "doc/images/ss-repositories.png",
+     "doc/images/ss-signup-motivator.jpg",
+     "doc/introduction.html",
+     "doc/rails_plugin.html",
+     "doc/release.html",
+     "doc/release_server.html",
+     "doc/repository.html",
+     "doc/ruby_gem.html",
+     "doc/server_environment.html",
+     "doc/user.html",
      "lib/beanstalkapp.rb",
      "lib/beanstalkapp/account.rb",
      "lib/beanstalkapp/base.rb",
@@ -30,13 +134,18 @@ Gem::Specification.new do |s|
      "lib/beanstalkapp/release.rb",
      "lib/beanstalkapp/release_server.rb",
      "lib/beanstalkapp/repository.rb",
-     "lib/beanstalkapp/user.rb"
+     "lib/beanstalkapp/server_environment.rb",
+     "lib/beanstalkapp/user.rb",
+     "test/integration.rb"
   ]
   s.homepage = %q{http://api.beanstalkapp.com}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Official wrapper for Beanstalk API.}
+  s.test_files = [
+    "test/integration.rb"
+  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

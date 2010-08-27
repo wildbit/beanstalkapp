@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>Beanstalk &mdash; Hassle-free Subversion Hosting</title>
+  	<meta name="description" content="Beanstalk allows designers and developers to store source code, track changes, and collaborate with their team.">
+  	<meta name="author"      content="Wildbit, LLC">
+  	<meta name="viewport"    content="width=980">
+	  
+  	<!--[if IE]>
+  	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+
+  	<link rel="stylesheet" href="files/stylesheets/global.css" media="all">
+
+  	<!--[if IE 7]>
+  	<link rel="stylesheet" href="files/stylesheets/ie7.css" media="all">
+  	<![endif]-->
+
+  	<script type="text/javascript" src="files/javascripts/mootools-1.2.4-core-yc.js"></script>
+  	<script type="text/javascript" src="files/javascripts/code-highlighter.js"></script>
+  	<script type="text/javascript" src="files/javascripts/global.js"></script>
+
+  	<link rel="shortcut icon"    href="images/favicon.ico">
+  	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  </head>
+  
+  <body>
+    <header>
+    	<div class="container">
+
+    		<hgroup>
+    			<h1><a href="http://beanstalkapp.com">Beanstalk</a></h1>
+    			<h2><a href="http://beanstalkapp.com">Version Control with a Human Face</a></h2>
+    		</hgroup>
+  
+        <nav>
+    			<ul>
+    			  <li><a href="http://beanstalkapp.com">Home</a></li>
+    				<li><a href="http://beanstalkapp.com/features">Feature Tour</a></li>
+    				<li><a href="http://beanstalkapp.com/buzz">Buzz</a></li>
+    				<li><a href="http://help.beanstalkapp.com/">Support</a></li>
+    				<li><a href="http://beanstalkapp.com/partners">Partners</a></li>
+    				<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    				<li><strong>API &amp; Tools</strong></li>
+    				<li class="link-signin"><a href="https://login.beanstalkapp.com">Log In</a></li>
+    				<li class="link-signup"><a href="http://beanstalkapp.com/pricing">Pricing &amp; Sign Up</a></li>
+    			</ul>
+    		</nav>
+    		
+    		<b class="cl"></b><b class="cr"></b>
+    	</div>
+    </header>
+    
+    <div class="page" id="api">
+	    <div class="container">
+		    <section class="wrap">
+		      <h1>Comment model</h1>
+<p>Every Changeset in Beanstalk can have many Comments. The <span class="caps">API</span> allows you to view and create them.</p>
+<h3>Writable attributes</h3>
+<ol>
+	<li><var>body</var> — comment contents;</li>
+	<li><var>file_path</var> — file from a diff the comment is associated with;</li>
+	<li><var>line_number</var> — line number of the associated file;</li>
+	<li><var>revision</var> — changeset revision.</li>
+</ol>
+<h3>Note on formatting</h3>
+<p>Beanstalk will automatically escape all <span class="caps">HTML</span> tags from the <var>body</var> attribute, apply Textile formatting and turn all URls into clickable <span class="caps">HTML</span> links.</p>
+<h3>Find all comments for a repository</h3>
+<p><var>repository_id</var> is required. Either name of the repo or it’s ID can be used. Use <var>page</var> parameter to skim through pages. Beanstalk will send 15 comments per page.</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/repo_name/comments.xml</pre></code></div>
+
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;comments type=&quot;array&quot;&gt;
+  &lt;comment&gt;
+    &lt;id type=&quot;integer&quot;&gt;324934&lt;/id&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;4&lt;/account-id&gt;
+    &lt;author-id type=&quot;integer&quot;&gt;17&lt;/author-id&gt;
+    &lt;body&gt;
+      Hey, this is my first comment.
+      I think you have a typo on this line.
+    &lt;/body&gt;
+    &lt;created-at type=&quot;datetime&quot;&gt;2010-01-18T15:47:45Z&lt;/created-at&gt;
+    &lt;file-path&gt;trunk/index.html&lt;/file-path&gt;
+    &lt;line-number&gt;34&lt;/line-number&gt;
+    &lt;rendered-body&gt;
+      &amp;lt;p&amp;gt;Hey, this is my first comment.
+      I think you have a typo on this line.&amp;lt;/p&amp;gt;
+    &lt;/rendered-body&gt;
+    &lt;repository-id type=&quot;integer&quot;&gt;2&lt;/repository-id&gt;
+    &lt;revision type=&quot;integer&quot;&gt;1&lt;/revision&gt;
+    &lt;updated-at type=&quot;datetime&quot;&gt;2010-01-18T15:47:45Z&lt;/updated-at&gt;
+  &lt;/comment&gt;
+  &lt;comment&gt;
+    &lt;id type=&quot;integer&quot;&gt;834234&lt;/id&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;4&lt;/account-id&gt;
+    &lt;author-id type=&quot;integer&quot;&gt;17&lt;/author-id&gt;
+    &lt;body&gt;Check out my *textile* dude.&lt;/body&gt;
+    &lt;created-at type=&quot;datetime&quot;&gt;2010-01-18T15:48:54Z&lt;/created-at&gt;
+    &lt;file-path nil=&quot;true&quot;&gt;&lt;/file-path&gt;
+    &lt;line-number nil=&quot;true&quot;&gt;&lt;/line-number&gt;
+    &lt;rendered-body&gt;
+      &amp;lt;p&amp;gt;Check out my &lt;strong&gt;textile&lt;/strong&gt; dude.&amp;lt;/p&amp;gt;
+    &lt;/rendered-body&gt;
+    &lt;repository-id type=&quot;integer&quot;&gt;2&lt;/repository-id&gt;
+    &lt;revision type=&quot;integer&quot;&gt;66&lt;/revision&gt;
+    &lt;updated-at type=&quot;datetime&quot;&gt;2010-01-18T15:48:54Z&lt;/updated-at&gt;
+  &lt;/comment&gt;
+&lt;/comments&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Comment.find :all, :params =&gt; {
+  :repository_id =&gt; 2
+}</pre></code></div>
+<h3>Find all comments for specific changeset</h3>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/repo_name/comments.xml?revision=1</pre></code></div>
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;comments type=&quot;array&quot;&gt;
+  &lt;comment&gt;
+    &lt;id type=&quot;integer&quot;&gt;583197&lt;/id&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;4&lt;/account-id&gt;
+    &lt;author-id type=&quot;integer&quot;&gt;17&lt;/author-id&gt;
+    &lt;body&gt;
+      Hey, this is my first comment.
+      I think you have a typo on this line.
+    &lt;/body&gt;
+    &lt;created-at type=&quot;datetime&quot;&gt;2010-01-18T15:47:45Z&lt;/created-at&gt;
+    &lt;file-path&gt;trunk/index.html&lt;/file-path&gt;
+    &lt;line-number&gt;34&lt;/line-number&gt;
+    &lt;rendered-body&gt;
+      &amp;lt;p&amp;gt;Hey, this is my first comment.
+      I think you have a typo on this line.&amp;lt;/p&amp;gt;
+    &lt;/rendered-body&gt;
+    &lt;repository-id type=&quot;integer&quot;&gt;2&lt;/repository-id&gt;
+    &lt;revision type=&quot;integer&quot;&gt;1&lt;/revision&gt;
+    &lt;updated-at type=&quot;datetime&quot;&gt;2010-01-18T15:47:45Z&lt;/updated-at&gt;
+  &lt;/comment&gt;
+&lt;/comments&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Comment.find :all, :params =&gt; {
+  :repository_id =&gt; 2,
+  :revision =&gt; 1
+}</pre></code></div>
+<h3>Find single comment by id</h3>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/repo_name/comments/8543.xml</pre></code></div>
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;comment&gt;
+  &lt;id type=&quot;integer&quot;&gt;8543&lt;/id&gt;
+  &lt;account-id type=&quot;integer&quot;&gt;4&lt;/account-id&gt;
+  &lt;author-id type=&quot;integer&quot;&gt;17&lt;/author-id&gt;
+  &lt;body&gt;Hey, this is my first comment.&lt;/body&gt;
+  &lt;created-at type=&quot;datetime&quot;&gt;2010-01-18T15:47:45Z&lt;/created-at&gt;
+  &lt;file-path&gt;trunk/index.html&lt;/file-path&gt;
+  &lt;line-number&gt;34&lt;/line-number&gt;
+  &lt;rendered-body&gt;
+    &amp;lt;p&amp;gt;Hey, this is my first comment.&amp;lt;/p&amp;gt;
+  &lt;/rendered-body&gt;
+  &lt;repository-id type=&quot;integer&quot;&gt;2&lt;/repository-id&gt;
+  &lt;revision type=&quot;integer&quot;&gt;1&lt;/revision&gt;
+  &lt;updated-at type=&quot;datetime&quot;&gt;2010-01-18T15:47:45Z&lt;/updated-at&gt;
+&lt;/comment&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Comment.find 8543, :params =&gt; {
+  :repository_id =&gt; 2
+}</pre></code></div>
+<h3>Create new comment</h3>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>POST /api/repo_name/comments.xml
+&lt;comment&gt;
+  &lt;revision type=&quot;integer&quot;&gt;6&lt;/revision&gt;
+  &lt;body&gt;This is my comment text.&lt;/body&gt;
+  &lt;file-path&gt;/branches/application/super_file.txt&lt;/file-path&gt;
+  &lt;line-number&gt;4&lt;/line-number&gt;
+&lt;/comment&gt;
+</pre></code></div>
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;comment&gt;
+  &lt;id type=&quot;integer&quot;&gt;98636&lt;/id&gt;
+  &lt;account-id type=&quot;integer&quot;&gt;4&lt;/account-id&gt;
+  &lt;author-id type=&quot;integer&quot;&gt;17&lt;/author-id&gt;
+  &lt;body&gt;This is my comment text.&lt;/body&gt;
+  &lt;created-at type=&quot;datetime&quot;&gt;2010-01-18T15:47:45Z&lt;/created-at&gt;
+  &lt;file-path&gt;/branches/application/super_file.txt&lt;/file-path&gt;
+  &lt;line-number&gt;4&lt;/line-number&gt;
+  &lt;rendered-body&gt;
+    &amp;lt;p&amp;gt;This is my comment text.&amp;lt;/p&amp;gt;
+  &lt;/rendered-body&gt;
+  &lt;repository-id type=&quot;integer&quot;&gt;2&lt;/repository-id&gt;
+  &lt;revision type=&quot;integer&quot;&gt;6&lt;/revision&gt;
+  &lt;updated-at type=&quot;datetime&quot;&gt;2010-01-18T15:47:45Z&lt;/updated-at&gt;
+&lt;/comment&gt;
+
+--OR IF INVALID--
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;errors&gt;
+  &lt;error&gt;Body can't be blank&lt;/error&gt;
+&lt;/errors&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>c = Beanstalk::API::Comment.new
+c.prefix_options = { :repository_id =&gt; 2 }
+c.revision = 6
+c.body = &quot;This is my comment text.&quot;
+c.file_path = &quot;/branches/application/super_file.txt&quot;
+c.line_number = 4
+c.save
+</pre></code></div>
+	      </section>
+	      
+	      <section id="sidebar">
+	        <ul class="tabs">
+				    <li>
+				      
+				      <a href="introduction.html">Introduction</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="changelog.html">Changelog</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="ruby_gem.html">Ruby Gem</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="account.html">Account</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="user.html">User</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="repository.html">Repository</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="changeset.html">Changeset</a>
+      	    </li>          	    
+      	    <li>
+      	      
+              <strong>&rarr; Comment</strong>
+      	    </li>
+      	    <li>
+      	      
+              <a href="server_environment.html">Server Environment</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <a href="release_server.html">Release Server</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <a href="release.html">Release</a>
+      	    </li>
+			    </ul>
+        </section>
+	    </div>
+	  </div>
+	  
+	  <footer>
+
+    	<div class="container">
+    		<ul>
+    		  <li><a href="http://help.beanstalkapp.com/discussion/new">Contact</a></li>
+    			<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    			<li><a href="http://twitter.com/beanstalkapp">Twitter</a></li>
+    			<li><a href="http://beanstalkapp.com/security">Security</a></li>
+    			<li><a href="http://beanstalkapp.com/privacy-policy">Privacy Policy</a></li>
+    			<li><a href="http://beanstalkapp.com/terms-of-service">Terms of Service</a></li>
+    		</ul>
+    		<p>&copy; <a href="http://wildbit.com/">Wildbit, <abbr>LLC</abbr></a>, 2010. All rights reserved. The Beanstalk logo and name are trademarks of Wildbit, <abbr>LLC</abbr>.</p>
+    	</div>
+
+    </footer>
+    
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-507677-5");
+pageTracker._setDomainName(".beanstalkapp.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+  </body>
+</html>

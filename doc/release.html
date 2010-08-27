@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>Beanstalk &mdash; Hassle-free Subversion Hosting</title>
+  	<meta name="description" content="Beanstalk allows designers and developers to store source code, track changes, and collaborate with their team.">
+  	<meta name="author"      content="Wildbit, LLC">
+  	<meta name="viewport"    content="width=980">
+	  
+  	<!--[if IE]>
+  	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+
+  	<link rel="stylesheet" href="files/stylesheets/global.css" media="all">
+
+  	<!--[if IE 7]>
+  	<link rel="stylesheet" href="files/stylesheets/ie7.css" media="all">
+  	<![endif]-->
+
+  	<script type="text/javascript" src="files/javascripts/mootools-1.2.4-core-yc.js"></script>
+  	<script type="text/javascript" src="files/javascripts/code-highlighter.js"></script>
+  	<script type="text/javascript" src="files/javascripts/global.js"></script>
+
+  	<link rel="shortcut icon"    href="images/favicon.ico">
+  	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  </head>
+  
+  <body>
+    <header>
+    	<div class="container">
+
+    		<hgroup>
+    			<h1><a href="http://beanstalkapp.com">Beanstalk</a></h1>
+    			<h2><a href="http://beanstalkapp.com">Version Control with a Human Face</a></h2>
+    		</hgroup>
+  
+        <nav>
+    			<ul>
+    			  <li><a href="http://beanstalkapp.com">Home</a></li>
+    				<li><a href="http://beanstalkapp.com/features">Feature Tour</a></li>
+    				<li><a href="http://beanstalkapp.com/buzz">Buzz</a></li>
+    				<li><a href="http://help.beanstalkapp.com/">Support</a></li>
+    				<li><a href="http://beanstalkapp.com/partners">Partners</a></li>
+    				<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    				<li><strong>API &amp; Tools</strong></li>
+    				<li class="link-signin"><a href="https://login.beanstalkapp.com">Log In</a></li>
+    				<li class="link-signup"><a href="http://beanstalkapp.com/pricing">Pricing &amp; Sign Up</a></li>
+    			</ul>
+    		</nav>
+    		
+    		<b class="cl"></b><b class="cr"></b>
+    	</div>
+    </header>
+    
+    <div class="page" id="api">
+	    <div class="container">
+		    <section class="wrap">
+		      <h1>Release model</h1>
+<p>The release model is associate with the <a href="release_server.html">Release Server</a> model, which allows you to deploy your code via <span class="caps">FTP</span> or <span class="caps">SFTP</span> to your web server.</p>
+<h3>Writable attributes</h3>
+<ol>
+	<li><var>revision</var> — what revision of the server to deploy;</li>
+	<li><var>comment</var> — just text that will be displayed in release notes;</li>
+	<li><var>deploy_from_scratch</var> — deploy from the first revision rather then doing incremental deployment;</li>
+	<li><var>environment_id</var> — environment you want to deploy to.</li>
+</ol>
+<h3>Find all successful releases</h3>
+<p><var>repository_id</var> is required. Either name of the repo or it’s ID can be used. Use <var>page</var> parameter to skim through pages. Beanstalk will send 20 releases per page.</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/repo_name/releases.xml</pre></code></div>
+
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;releases type=&quot;array&quot;&gt;
+  &lt;release&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;23452&lt;/account-id&gt;
+    &lt;author&gt;gilbert&lt;/author&gt;
+    &lt;comment&gt;Deploying yesterday's changes.&lt;/comment&gt;
+    &lt;created-at type=&quot;datetime&quot;&gt;
+      2009-11-04T10:03:29Z
+    &lt;/created-at&gt;
+    &lt;deployed-at type=&quot;datetime&quot;&gt;
+      2009-11-04T10:03:40Z
+    &lt;/deployed-at&gt;
+    &lt;id type=&quot;integer&quot;&gt;2547&lt;/id&gt;
+    &lt;last-retry-at type=&quot;datetime&quot; nil=&quot;true&quot;&gt;&lt;/last-retry-at&gt;
+    &lt;repository-id type=&quot;integer&quot;&gt;98765&lt;/repository-id&gt;
+    &lt;environment-name&gt;Staging&lt;/environment-name&gt;
+    &lt;environment-id&gt;6&lt;/environment-id&gt;      
+    &lt;retries type=&quot;integer&quot;&gt;0&lt;/retries&gt;
+    &lt;revision type=&quot;integer&quot;&gt;81&lt;/revision&gt;
+    &lt;state&gt;complete&lt;/state&gt;
+    &lt;updated-at type=&quot;datetime&quot;&gt;
+      2009-11-04T10:03:40Z
+    &lt;/updated-at&gt;
+  &lt;/release&gt;
+  &lt;release&gt;
+    &lt;account-id type=&quot;integer&quot;&gt;8765&lt;/account-id&gt;
+    &lt;author&gt;ilya&lt;/author&gt;
+    &lt;comment&gt;Going crazy&lt;/comment&gt;
+    &lt;created-at type=&quot;datetime&quot;&gt;
+      2008-06-26T17:02:22Z
+    &lt;/created-at&gt;
+    &lt;deployed-at type=&quot;datetime&quot;&gt;
+      2008-06-26T17:03:30Z
+    &lt;/deployed-at&gt;
+    &lt;id type=&quot;integer&quot;&gt;6543&lt;/id&gt;
+    &lt;last-retry-at type=&quot;datetime&quot; nil=&quot;true&quot;&gt;&lt;/last-retry-at&gt;
+    &lt;repository-id type=&quot;integer&quot;&gt;8967&lt;/repository-id&gt;
+    &lt;environment-name&gt;Staging&lt;/environment-name&gt;
+    &lt;environment-id&gt;6&lt;/environment-id&gt;
+    &lt;retries type=&quot;integer&quot;&gt;0&lt;/retries&gt;
+    &lt;revision type=&quot;integer&quot;&gt;249&lt;/revision&gt;
+    &lt;state&gt;complete&lt;/state&gt;
+    &lt;updated-at type=&quot;datetime&quot;&gt;
+      2008-11-04T14:50:01Z
+    &lt;/updated-at&gt;
+  &lt;/release&gt;
+&lt;/releases&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Release.find_all_for_environment(environment_id=7, &quot;repo&quot;, page=nil)</pre></code></div>
+<h3>Find a single release</h3>
+<p><var>repository_id</var> is required. Either name of the repo or it’s ID can be used. Release ID is required.</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>GET /api/repo_name/8765.xml</pre></code></div>
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;release&gt;
+  &lt;account-id type=&quot;integer&quot;&gt;8765&lt;/account-id&gt;
+  &lt;author&gt;ilya&lt;/author&gt;
+  &lt;comment&gt;Going crazy&lt;/comment&gt;
+  &lt;created-at type=&quot;datetime&quot;&gt;
+    2008-06-26T17:02:22Z
+  &lt;/created-at&gt;
+  &lt;deployed-at type=&quot;datetime&quot;&gt;
+    2008-06-26T17:03:30Z
+  &lt;/deployed-at&gt;
+  &lt;id type=&quot;integer&quot;&gt;6543&lt;/id&gt;
+  &lt;last-retry-at type=&quot;datetime&quot; nil=&quot;true&quot;&gt;&lt;/last-retry-at&gt;
+  &lt;repository-id type=&quot;integer&quot;&gt;8967&lt;/repository-id&gt;
+  &lt;environment-name&gt;Staging&lt;/environment-name&gt;
+  &lt;environment-id&gt;6&lt;/environment-id&gt;
+  &lt;retries type=&quot;integer&quot;&gt;0&lt;/retries&gt;
+  &lt;revision type=&quot;integer&quot;&gt;249&lt;/revision&gt;
+  &lt;state&gt;complete&lt;/state&gt;
+  &lt;updated-at type=&quot;datetime&quot;&gt;
+    2008-11-04T14:50:01Z
+  &lt;/updated-at&gt;
+&lt;/release&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>Beanstalk::API::Release.find_for_repository(8765, &quot;repo&quot;)</pre></code></div>
+<h3>Create new release</h3>
+<p>Creating a release means requesting a deployment. If you already have some releases in state “new” or “retry”, Beanstalk will delete them after creating a new one.</p>
+<p>See the list of writable attributes at the top of the page. Both <var>revision</var> and <var>release_server_id</var> are required. <var>release_server_id</var> should be an ID of an enabled server under your account.</p>
+<div class="code_container http-request"><i>http-request</i><code class="http-request"><pre>POST /api/repo_name/releases.xml/?environment_id=6
+&lt;release&gt;
+  &lt;revision type=&quot;integer&quot;&gt;1&lt;/revision&gt;
+&lt;/release&gt;
+</pre></code></div>
+            <div class="code_container response">
+              <p>Click to expand&hellip;</p>
+						  <i>http-response</i>
+              <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;release&gt;
+  &lt;account-id type=&quot;integer&quot;&gt;23452&lt;/account-id&gt;
+  &lt;author&gt;gilbert&lt;/author&gt;
+  &lt;comment&gt;Deploying yesterday's changes.&lt;/comment&gt;
+  &lt;created-at type=&quot;datetime&quot;&gt;
+    2009-11-04T10:03:29Z
+  &lt;/created-at&gt;
+  &lt;deployed-at type=&quot;datetime&quot;&gt;
+    2009-11-04T10:03:40Z
+  &lt;/deployed-at&gt;
+  &lt;id type=&quot;integer&quot;&gt;2547&lt;/id&gt;
+  &lt;last-retry-at type=&quot;datetime&quot; nil=&quot;true&quot;&gt;&lt;/last-retry-at&gt;
+  &lt;repository-id type=&quot;integer&quot;&gt;98765&lt;/repository-id&gt;
+  &lt;environment-name&gt;Staging&lt;/environment-name&gt;
+  &lt;environment-id&gt;6&lt;/environment-id&gt;
+  &lt;retries type=&quot;integer&quot;&gt;0&lt;/retries&gt;
+  &lt;revision type=&quot;integer&quot;&gt;81&lt;/revision&gt;
+  &lt;state&gt;complete&lt;/state&gt;
+  &lt;updated-at type=&quot;datetime&quot;&gt;
+    2009-11-04T10:03:40Z
+  &lt;/updated-at&gt;
+&lt;/release&gt;
+
+--OR IF INVALID--
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;errors&gt;
+  &lt;error&gt;Server can't be blank&lt;/error&gt;
+&lt;/errors&gt;</code></pre>
+            </div>
+          <div class="code_container ruby"><i>ruby</i><code class="ruby"><pre>r = Beanstalk::API::Release.new
+r.prefix_options = { :repository_id =&gt; 58, :environment_id =&gt; 6 }
+r.revision = 1
+r.save
+</pre></code></div>
+	      </section>
+	      
+	      <section id="sidebar">
+	        <ul class="tabs">
+				    <li>
+				      
+				      <a href="introduction.html">Introduction</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="changelog.html">Changelog</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="ruby_gem.html">Ruby Gem</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="account.html">Account</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="user.html">User</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="repository.html">Repository</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="changeset.html">Changeset</a>
+      	    </li>          	    
+      	    <li>
+      	      
+              <a href="comment.html">Comment</a>
+      	    </li>
+      	    <li>
+      	      
+              <a href="server_environment.html">Server Environment</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <a href="release_server.html">Release Server</a>
+      	    </li>      	    
+      	    <li>
+      	      
+              <strong>&rarr; Release</strong>
+      	    </li>
+			    </ul>
+        </section>
+	    </div>
+	  </div>
+	  
+	  <footer>
+
+    	<div class="container">
+    		<ul>
+    		  <li><a href="http://help.beanstalkapp.com/discussion/new">Contact</a></li>
+    			<li><a href="http://blog.beanstalkapp.com">Blog</a></li>
+    			<li><a href="http://twitter.com/beanstalkapp">Twitter</a></li>
+    			<li><a href="http://beanstalkapp.com/security">Security</a></li>
+    			<li><a href="http://beanstalkapp.com/privacy-policy">Privacy Policy</a></li>
+    			<li><a href="http://beanstalkapp.com/terms-of-service">Terms of Service</a></li>
+    		</ul>
+    		<p>&copy; <a href="http://wildbit.com/">Wildbit, <abbr>LLC</abbr></a>, 2010. All rights reserved. The Beanstalk logo and name are trademarks of Wildbit, <abbr>LLC</abbr>.</p>
+    	</div>
+
+    </footer>
+    
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-507677-5");
+pageTracker._setDomainName(".beanstalkapp.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+  </body>
+</html>

@@ -1,5 +1,16 @@
 = Changelog
 
+== 1.2.1
+* Added pagination support for Releases API. Now you can specify page number as a third argument to Release.find_all_for_environment.
+
+== 1.2.0
+
+* Added support for reworked Beanstalk Deployments. New model added: ServerEnvironment.
+
+== 1.1.3
+
+* Added ReleaseServer#toggle_state! method for enabling/disabling Releases servers.
+
 == 1.1.2
 
 * Fixed find methods in Release class.
