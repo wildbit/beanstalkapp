@@ -7,6 +7,7 @@ end
 
 require 'beanstalkapp/base'
 require 'beanstalkapp/account'
+require 'beanstalkapp/plan'
 require 'beanstalkapp/changeset'
 require 'beanstalkapp/repository'
 require 'beanstalkapp/comment'

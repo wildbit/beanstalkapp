@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{beanstalkapp}
-  s.version = "1.2.1"
+  s.version = "1.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ilya Sabanin"]
-  s.date = %q{2010-08-27}
+  s.date = %q{2010-09-30}
   s.email = %q{ilya.sabanin@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -131,6 +131,7 @@ Gem::Specification.new do |s|
      "lib/beanstalkapp/base.rb",
      "lib/beanstalkapp/changeset.rb",
      "lib/beanstalkapp/comment.rb",
+     "lib/beanstalkapp/plan.rb",
      "lib/beanstalkapp/release.rb",
      "lib/beanstalkapp/release_server.rb",
      "lib/beanstalkapp/repository.rb",
@@ -141,7 +142,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://api.beanstalkapp.com}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{Official wrapper for Beanstalk API.}
   s.test_files = [
     "test/integration.rb"
@@ -151,7 +152,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activeresource>, ["= 2.3.5"])
     else
       s.add_dependency(%q<activeresource>, ["= 2.3.5"])
