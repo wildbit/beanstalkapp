@@ -32,5 +32,5 @@ For information about all API methods please go to the official documentation si
 
 http://api.beanstalkapp.com
 
-Copyright (c) 2010 Ilya Sabanin, Wildbit.
+Copyright (c) 2011 Ilya Sabanin, Wildbit.
 Released under the MIT license

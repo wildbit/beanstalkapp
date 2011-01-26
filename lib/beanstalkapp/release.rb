@@ -18,5 +18,9 @@ module Beanstalk::API
       find id, :params => { :repository_id => repo_id }
     end
     
+    def retry
+      put(:retry, :id => id)
+    end
+    
   end
 end

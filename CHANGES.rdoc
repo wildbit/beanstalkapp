@@ -1,5 +1,9 @@
 = Changelog
 
+== 1.4.0
+
+* Added Release#retry method for retrying failed deployments.
+
 == 1.3.0
 
 * Added Plan model. It will return information about Beanstalk's public plans including storage limits and price.
