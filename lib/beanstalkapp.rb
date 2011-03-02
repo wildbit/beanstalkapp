@@ -5,13 +5,17 @@ module Beanstalk
   end
 end
 
-require 'beanstalkapp/base'
-require 'beanstalkapp/account'
-require 'beanstalkapp/plan'
-require 'beanstalkapp/changeset'
-require 'beanstalkapp/repository'
-require 'beanstalkapp/comment'
-require 'beanstalkapp/server_environment'
-require 'beanstalkapp/release'
-require 'beanstalkapp/release_server'
-require 'beanstalkapp/user'
+def require_local(suffix)
+  require(File.expand_path(File.join(File.dirname(__FILE__), suffix)))
+end
+
+require_local 'beanstalkapp/base'
+require_local 'beanstalkapp/account'
+require_local 'beanstalkapp/plan'
+require_local 'beanstalkapp/changeset'
+require_local 'beanstalkapp/repository'
+require_local 'beanstalkapp/comment'
+require_local 'beanstalkapp/server_environment'
+require_local 'beanstalkapp/release'
+require_local 'beanstalkapp/release_server'
+require_local 'beanstalkapp/user'
