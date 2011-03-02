@@ -1,5 +1,9 @@
 = Changelog
 
+== 1.4.1
+
+* Added User.find_current for fetching info about currently logged in user.
+
 == 1.4.0
 
 * Added Release#retry method for retrying failed deployments.
