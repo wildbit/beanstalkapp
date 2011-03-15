@@ -1,5 +1,9 @@
 = Changelog
 
+== 1.5.0
+
+* Introducing PublicKey resource.
+
 == 1.4.1
 
 * Added User.find_current for fetching info about currently logged in user.
