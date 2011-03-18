@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ilya Sabanin"]
-  s.date = %q{2011-03-15}
+  s.date = %q{2011-03-18}
   s.email = %q{ilya.sabanin@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -131,6 +131,7 @@ Gem::Specification.new do |s|
     "lib/beanstalkapp/changeset.rb",
     "lib/beanstalkapp/comment.rb",
     "lib/beanstalkapp/plan.rb",
+    "lib/beanstalkapp/public_key.rb",
     "lib/beanstalkapp/release.rb",
     "lib/beanstalkapp/release_server.rb",
     "lib/beanstalkapp/repository.rb",
